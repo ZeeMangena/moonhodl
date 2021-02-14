@@ -15,6 +15,8 @@ ReactDOM.render(
 	document.getElementById("root")
 );
 
+//The challenge will be stepping up from ASP.Net + SQL experience. Finding the crossover...
+
 // If you want to start measuring performance in your app, pass a function
 // to log results (for example: reportWebVitals(console.log))
 // or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
