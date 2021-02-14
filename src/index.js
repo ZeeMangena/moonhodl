@@ -5,14 +5,37 @@ import App from "./App";
 import { StateProvider } from "./StateProvider";
 import reducer, { initialState } from "./reducer";
 import reportWebVitals from "./reportWebVitals";
+import { ApolloClient, InMemoryCache } from "@apollo/client";
+import { useQuery, gql } from "@apollo/client";
+import { ApolloProvider } from "@apollo/client";
+//Apollo client in action, now I need to build the server
+const client = new ApolloClient({
+  uri: "https://48p1r2roz4.sse.codesandbox.io/",
+  cache: new InMemoryCache()
+});
+
+client
+  .query({
+    query: gql`
+      query GetCoinData {
+        data(id: "90") {
+          name
+          symbol
+        }
+      }
+    `
+  })
+  .then((result) => console.log(result));
 
 ReactDOM.render(
-	<React.StrictMode>
-		<StateProvider initialState={initialState} reducer={reducer}>
-			<App />
-		</StateProvider>
-	</React.StrictMode>,
-	document.getElementById("root")
+  <React.StrictMode>
+    <ApolloProvider client={client}>
+      <StateProvider initialState={initialState} reducer={reducer}>
+        <App />
+      </StateProvider>
+    </ApolloProvider>
+  </React.StrictMode>,
+  document.getElementById("root")
 );
 
 //The challenge will be stepping up from ASP.Net + SQL experience. Finding the crossover...
