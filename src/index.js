@@ -13,7 +13,14 @@ const client = new ApolloClient({
   uri: "https://48p1r2roz4.sse.codesandbox.io/",
   cache: new InMemoryCache()
 });
-
+const COIN_DATA = gql`
+  query GetCoinData {
+    rates(id: "90") {
+      name
+      symbol
+    }
+  }
+`;
 client
   .query({
     query: gql`
