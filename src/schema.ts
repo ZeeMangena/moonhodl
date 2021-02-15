@@ -1,34 +1,38 @@
+const { ApolloServer, gql } = require("apollo-server");
+
 const schema = `
 
-type Query { 
-  getMarketData(id: String!): Market!
-}
-
-type Market{
+type Coin{
   id : String!
   name : String!
   symbol : String!
 }
 
-type Coin{
-  coin : Market!
+type CoinDetails{
+  coin : Coin!
   rank : Int!
   price_usd : String!
-  percent_change_24h : String!,
-  percent_change_1h : String!,
-  percent_change_7d : String!,
-  price_btc : String!,
-  market_cap_usd : String!,
-  volume24 : float!,
-  volume24a : float!,
-  csupply : String!,
-  tsupply : String!,
+  percent_change_24h : String!
+  percent_change_1h : String!
+  percent_change_7d : String!
+  price_btc : String!
+  market_cap_usd : String!
+  volume24 : float!
+  volume24a : float!
+  csupply : String!
+  tsupply : String!
   msupply : String!
 }
 
 type User{
   email : String!
   password : String!
+}
+
+type Query { 
+  getCoinData(id: String!): Coin!
+  getCoinDetails(coin: Coin!): Coin Details!
+  user(email: String!): User!
 }
 
 `;

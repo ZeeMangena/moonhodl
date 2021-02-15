@@ -2,7 +2,7 @@ functions:
   graphql:
     handler: handler.graphqlHandler
     events:
-    - http:
+    - http: //api.coinlore.net/api/tickers/
         path: graphql
         method: post
         cors: true
