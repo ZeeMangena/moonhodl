@@ -3,6 +3,6 @@ export const resolvers = {
     getMarketData: (root, args) => getMarketData(args)
   },
   Market: {
-    Coin: (obj, args) => getPaginatedCoin(obj.handle, args)
+    Coin: (obj, args) => getCoin(obj.handle, args)
   }
 };
