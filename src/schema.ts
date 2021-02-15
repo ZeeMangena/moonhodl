@@ -24,15 +24,10 @@ type CoinDetails{
   msupply : String!
 }
 
-type User{
-  email : String!
-  password : String!
-}
 
 type Query { 
   getCoinData(id: String!): Coin!
   getCoinDetails(coin: Coin!): Coin Details!
-  user(email: String!): User!
 }
 
 `;
