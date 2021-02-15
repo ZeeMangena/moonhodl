@@ -2,33 +2,48 @@ import { resolveTypeReferenceDirective } from "typescript";
 
 const { RESTDataSource } = require("apollo-datasource-rest");
 
-class CoinLoreAPI extends RESTDataSource{
-  constructor(){
-    super();
-    this.baseURL = "https://api.coinlore.net/api/"
-  }
+class CoinLoreAPI extends RESTDataSource {
+	constructor() {
+		super();
+		this.baseURL = "https://api.coinlore.net/api/";
+	}
 
-  async getCoinData(limit = 20){
-    const data = await this.get('tickers/', {
-      per_page: limit, //Paginating all coins, for general digestibilty by the app
-      order_by: 'rank',
-    });
-    return data.results;
-  }
+	async getCoinData(limit = 20) {
+		const data = await this.get("tickers/", {
+			per_page: limit, //Paginating all coins, for general digestibilty by the app
+			order_by: "rank",
+		});
+		return data.results;
+	}
 
-  async getCoinDetails(id){
-    return this.get(`coin/markets?id=${id})`) //Resolving individual Coin Details
-  }
-
+	async getCoinDetails(id) {
+		return this.get(`coin/markets?id=${id})`); //Resolving individual Coin Details
+	}
 }
+
+const server = new ApolloServer({
+	schema,
+	resolvers,
+	dataSources: () => {
+		return {
+			coinLoreAPI: new CoinLoreAPI(),
+			personalizationAPI: new PersonalizationAPI(),
+		};
+	},
+	context: () => {
+		return {
+			token: "foo",
+		};
+	},
+});
 
 export const resolvers = {
 	Query: {
-		//getCoinData(parent, args, context, info)
-			//return;
+		tickers: async (_source, _args, { dataSources }) => {
+			return dataSources.coinLoreAPI.getCoinData();
+		},
+		coin: async (_source, { id }, { dataSources }) => {
+			return dataSources.coinLoreAPI.getCoinDetails(id);
 		},
 	},
-	//Market: {
-	//CoinDetails: (obj, args) => getCoinDetails(obj.handle, args)
-	//}
-//};
+};

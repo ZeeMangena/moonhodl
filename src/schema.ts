@@ -9,7 +9,9 @@ type Coin{
 }
 
 type CoinDetails{
-  coin : Coin!
+  id : String!
+  name : String!
+  symbol : String!
   rank : Int!
   price_usd : String!
   percent_change_24h : String!
@@ -27,7 +29,7 @@ type CoinDetails{
 
 type Query { 
   getCoinData(id: String!): Coin!
-  getCoinDetails(coin: Coin!): Coin Details!
+  getCoinDetails(id: String!): Coin Details!
 }
 
 `;
