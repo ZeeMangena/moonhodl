@@ -2,7 +2,7 @@ import { resolveTypeReferenceDirective } from "typescript";
 import schema from "./schema";
 
 const { RESTDataSource } = require("apollo-datasource-rest");
-
+const { ApolloServer } = require("apollo-server");
 class CoinLoreAPI extends RESTDataSource {
 	constructor() {
 		super();

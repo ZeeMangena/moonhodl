@@ -5,9 +5,8 @@ import App from "./App";
 import { StateProvider } from "./StateProvider";
 import reducer, { initialState } from "./reducer";
 import reportWebVitals from "./reportWebVitals";
-import { ApolloClient, InMemoryCache } from "@apollo/client";
-import { useQuery, gql } from "@apollo/client";
-import { ApolloProvider } from "@apollo/client";
+import { ApolloClient, InMemoryCache, ApolloProvider } from "@apollo/client";
+import { useQuery } from "@apollo/client";
 import { resolvers } from "./resolver";
 
 //Apollo client in action, now I need to build the server
