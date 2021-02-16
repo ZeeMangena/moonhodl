@@ -8,32 +8,21 @@ import reportWebVitals from "./reportWebVitals";
 import { ApolloClient, InMemoryCache } from "@apollo/client";
 import { useQuery, gql } from "@apollo/client";
 import { ApolloProvider } from "@apollo/client";
+import { resolvers } from "./resolver";
 
 //Apollo client in action, now I need to build the server
 const client = new ApolloClient({
-	uri: "https://48p1r2roz4.sse.codesandbox.io/",
-	cache: new InMemoryCache(),
+	uri: "https://api.coinlore.net/api/", //JSON Object (List of values)
+	cache: new InMemoryCache(), //put into local storage
 });
-const COIN_DATA = gql`
-	query GetCoinData {
-		rates(id: "90") {
-			name
-			symbol
-		}
-	}
-`;
+
+//Time to FETCH the data from the cache into a list I can use
+/*const COIN_DATA = useQuery(getCoinData);
 client
-	.query({
-		query: gql`
-			query getCoinData {
-				data(id: "90") {
-					name
-					symbol
-				}
-			}
-		`,
-	})
-	.then((result) => console.log(result));
+	.query(
+		coin
+	)
+	.then((result) => console.log(result));*/
 
 ReactDOM.render(
 	<React.StrictMode>
