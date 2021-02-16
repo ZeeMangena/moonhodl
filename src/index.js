@@ -7,7 +7,6 @@ import reducer, { initialState } from "./reducer";
 import reportWebVitals from "./reportWebVitals";
 import { ApolloClient, InMemoryCache, ApolloProvider } from "@apollo/client";
 import { useQuery } from "@apollo/client";
-import { resolvers } from "./resolver";
 
 //Apollo client in action, now I need to build the server
 const client = new ApolloClient({
