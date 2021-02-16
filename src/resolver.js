@@ -28,7 +28,6 @@ const server = new ApolloServer({
 	dataSources: () => {
 		return {
 			coinLoreAPI: new CoinLoreAPI(),
-			personalizationAPI: new PersonalizationAPI(),
 		};
 	},
 	context: () => {
