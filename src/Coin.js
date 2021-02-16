@@ -8,7 +8,7 @@ import { useQuery, gql } from "@apollo/client";
 
 function Coin({ id, symbol, name }) {
 	const [{ hidden }, dispatch] = useStateValue();
-	const { loading, error, data } = useQuery(COIN_DATA);
+	const { loading, error, data } = useQuery(coin(id));
 
 	if (loading) return <p>Loading...</p>;
 	if (error) return <p>Error :(</p>;
